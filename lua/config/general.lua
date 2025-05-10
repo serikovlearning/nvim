@@ -12,4 +12,3 @@ opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.fillchars:append({ eob = " " })  -- 'eob' = End Of Buffer
 opt.clipboard = "unnamedplus"
 opt.number = true
-
