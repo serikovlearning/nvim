@@ -6,3 +6,5 @@ require("config.theme")
 -- Plugins
 require("plugins.mason")
 require("plugins.lsp")
+require("plugins.treesitter")
+require("plugins.conform")

@@ -5,4 +5,9 @@ return {
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "neovim/nvim-lspconfig" },
 	{ "mason-org/mason.nvim" },
+    {
+  'stevearc/conform.nvim',
+  opts = {},
+}
+    -- { "nvimtools/none-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } }
 }
