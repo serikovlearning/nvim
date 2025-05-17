@@ -1,14 +1,3 @@
-vim.lsp.config("typescript-language-server", {
-    cmd = { "typescript-language-server", "--stdio" },
-    settings = {
-        ['typescript-language-server'] = {
-            codeLens = {
-                enable = true
-            }
-        }
-    },
-})
-
 vim.lsp.config("vtsls", {
     cmd = { "vtsls", "--stdio" },
     settings = {
@@ -47,7 +36,6 @@ vim.lsp.config("lua-language-server", {
     }
 })
 
--- vim.lsp.enable("typescript-language-server")
 vim.lsp.enable("lua-language-server")
 vim.lsp.enable("vtsls")
 
@@ -84,6 +72,9 @@ vim.diagnostic.config({
 })
 
 
+local bufnr = vim.api.nvim_get_current_buf()
+vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }))
+
 -- formattings
 vim.keymap.set(
     'n',
@@ -92,3 +83,26 @@ vim.keymap.set(
         vim.lsp.buf.format({ async = true })
     end
 )
+
+
+
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        -- Get the buffer number
+        local bufnr = args.buf
+
+        -- Define a local function to simplify keymapping
+        local opts = { noremap = true, silent = true }
+        local keymap = vim.api.nvim_buf_set_keymap
+
+        keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+        keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+        keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover({border=\"rounded\"})<CR>", opts)
+        keymap(bufnr, "n", "gR", "<cmd>lua vim.lsp.rename()<CR>", opts)
+        keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+        keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+        keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+        keymap(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    end,
+})
