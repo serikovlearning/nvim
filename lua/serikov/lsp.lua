@@ -88,6 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
         keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
         keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-        keymap(bufnr, "n", "g.", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+        -- keymap(bufnr, "n", "g.", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     end,
 })
