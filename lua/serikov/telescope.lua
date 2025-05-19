@@ -1,5 +1,6 @@
-local M = { 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } }
+local M = { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } }
 local MB = { "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } }
+local MS = { "nvim-telescope/telescope-ui-select.nvim" }
 
 local stop_insert = function()
     vim.schedule(
@@ -14,8 +15,21 @@ local keymap = vim.keymap
 function M.config()
     local telescope = require('telescope')
     local telescope_builtin = require('telescope.builtin')
-
-    telescope.setup()
+    -- telescope.load_extension("telescope-ui-select")
+    --
+    local telescope_themes = require("telescope.themes")
+    telescope.setup({
+        pickers = {
+            find_files = { telescope_themes.get_cursor{} }
+        },
+        extensions = {
+            ["ui-select"] = {
+                telescope_themes.get_cursor {
+                }
+            }
+        }
+    })
+    telescope.load_extension("ui-select")
     keymap.set(
         'n',
         '<leader><leader>',
@@ -46,4 +60,5 @@ function M.config()
     )
 end
 
-return vim.tbl_extend("force", M, MB)
+return { MS, M, MB }
+-- return vim.tbl_extend("force", M, MB)

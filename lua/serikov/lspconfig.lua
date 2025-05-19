@@ -2,9 +2,35 @@ local M = { "neovim/nvim-lspconfig" }
 
 
 function M.config()
-    vim.lsp.config("*", {})
+    vim.lsp.config("*", {
+        settings = {
+            codeAction = {
+                -- Enable additional code actions
+                -- These match the "source." kinds in LSP
+                -- and will be offered via `vim.lsp.buf.code_action()`
+                enable = true,
+                names = {
+                    "source.addMissingImports.ts",
+                    "source.fixAll.ts",
+                    "source.organizeImports.ts",
+                    "source.removeUnused.ts",
+                    "source.removeUnusedImports.ts",
+                    "source.sortImports.ts",
+                },
+            },
+        },
+        -- codeActionsOnSave = {
+        --     -- If you want some of these to trigger on save
+        --     -- You can enable them individually here
+        --     source = {
+        --         organizeImports = true,
+        --         removeUnused = true,
+        --     },
+        -- },
+    })
     vim.lsp.enable({
         "lua_ls",
+        "vtsls",
     })
 
     -- Setup dignostics

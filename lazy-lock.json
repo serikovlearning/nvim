@@ -11,8 +11,7 @@
   "nvim-vtsls": { "branch": "main", "commit": "60b493e641d3674c030c660cabe7a2a3f7a914be" },
   "oldworld.nvim": { "branch": "main", "commit": "cd805b996922948695966fa5c7616f7a82a3c8d1" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
+  "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
-  "tiny-code-action.nvim": { "branch": "main", "commit": "dc0bcd1420124dfd82e625f28caee5a825ffa317" },
   "vague.nvim": { "branch": "main", "commit": "a14014bd886b28d45be4dbea72992ce60741dc5f" }
 }
