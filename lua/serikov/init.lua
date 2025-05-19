@@ -1,7 +1,7 @@
 -- default things
 require("serikov.launch")
 require("serikov.opts")
--- require("serikov.lsp")
+require("serikov.keymap")
 
 -- spec lazy plugins and some like this
 spec("serikov.lazydev")
@@ -18,4 +18,3 @@ spec("serikov.treesitter")
 -- enable lazy and lazy dependend things
 require("serikov.lazy")
 require("serikov.colors")
-

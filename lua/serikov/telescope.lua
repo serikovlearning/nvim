@@ -9,6 +9,12 @@ local stop_insert = function()
         end
     )
 end
+local function vsplit_and_callback(fn)
+    vim.cmd("only")
+    vim.cmd("vsplit")
+    vim.cmd("wincmd L")
+    fn()
+end
 
 local keymap = vim.keymap
 
@@ -20,16 +26,43 @@ function M.config()
     local telescope_themes = require("telescope.themes")
     telescope.setup({
         pickers = {
-            find_files = { telescope_themes.get_cursor{} }
+            find_files = { telescope_themes.get_cursor {} }
         },
         extensions = {
             ["ui-select"] = {
                 telescope_themes.get_cursor {
                 }
+            },
+            ["file_browser"] = {
+                mappings = {
+                    ["i"] = {
+                        ["<C-l>"] = function(prompt_bufnr)
+                            local action_state = require("telescope.actions.state")
+                            local actions = require("telescope.actions")
+                            local entry = action_state.get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            vsplit_and_callback(function()
+                                vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+                            end)
+                        end,
+                    },
+                    ["n"] = {
+                        ["<S-l>"] = function(prompt_bufnr)
+                            local action_state = require("telescope.actions.state")
+                            local actions = require("telescope.actions")
+                            local entry = action_state.get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            vsplit_and_callback(function()
+                                vim.cmd("edit " .. vim.fn.fnameescape(entry.path))
+                            end)
+                        end,
+                    },
+                },
             }
         }
     })
     telescope.load_extension("ui-select")
+    telescope.load_extension("file_browser")
     keymap.set(
         'n',
         '<leader><leader>',
@@ -55,6 +88,15 @@ function M.config()
                 path = vim.fn.expand("%:p:h"),
                 select_buffer = true
             })
+            stop_insert()
+        end
+    )
+
+    keymap.set(
+        "n",
+        "<leader>gs",
+        function()
+            telescope_builtin.git_status()
             stop_insert()
         end
     )

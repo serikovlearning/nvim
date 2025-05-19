@@ -46,3 +46,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.cmd([[%s/\s\+$//e]])
     end,
 })
+
+
+-- save on focus lost
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
+    pattern = "*",
+    callback = function()
+        if vim.bo.modified and vim.bo.buftype == "" then
+            vim.cmd("silent! update")
+        end
+    end,
+})
