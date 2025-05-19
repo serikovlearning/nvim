@@ -3,22 +3,7 @@ local M = { "neovim/nvim-lspconfig" }
 
 function M.config()
     vim.lsp.config("*", {
-        settings = {
-            codeAction = {
-                -- Enable additional code actions
-                -- These match the "source." kinds in LSP
-                -- and will be offered via `vim.lsp.buf.code_action()`
-                enable = true,
-                names = {
-                    "source.addMissingImports.ts",
-                    "source.fixAll.ts",
-                    "source.organizeImports.ts",
-                    "source.removeUnused.ts",
-                    "source.removeUnusedImports.ts",
-                    "source.sortImports.ts",
-                },
-            },
-        },
+        settings = {}
         -- codeActionsOnSave = {
         --     -- If you want some of these to trigger on save
         --     -- You can enable them individually here
@@ -81,7 +66,7 @@ function M.config()
             keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover({border=\"rounded\"})<CR>", opts)
             keymap(bufnr, "n", "gR", "<cmd>lua vim.lsp.rename()<CR>", opts)
             keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-            keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+            keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
             keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
             keymap(bufnr, "n", "g.", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
         end,
