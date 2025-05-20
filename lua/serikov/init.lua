@@ -13,7 +13,7 @@ spec("serikov.conform")
 spec("serikov.lspconfig")
 spec("serikov.colorschemes")
 spec("serikov.treesitter")
--- spec("serikov.tiny-code-actions")
+spec("serikov.snacks")
 
 -- enable lazy and lazy dependend things
 require("serikov.lazy")
