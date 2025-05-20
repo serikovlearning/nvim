@@ -13,9 +13,14 @@ return {
     { -- optional blink completion source for require statements and module annotations
         "saghen/blink.cmp",
         opts = {
+            completion = {
+                menu = {
+                    auto_show = false,
+                },
+            },
             sources = {
                 -- add lazydev to your completion providers
-                default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+                default = { "buffer", "lsp", "path", "snippets", "lazydev", },
                 providers = {
                     lazydev = {
                         name = "LazyDev",
