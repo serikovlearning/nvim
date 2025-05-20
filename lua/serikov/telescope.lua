@@ -34,6 +34,7 @@ function M.config()
                 }
             },
             ["file_browser"] = {
+                grouped = true,
                 mappings = {
                     ["i"] = {
                         ["<C-l>"] = function(prompt_bufnr)
@@ -47,7 +48,7 @@ function M.config()
                         end,
                     },
                     ["n"] = {
-                        ["<S-l>"] = function(prompt_bufnr)
+                        ["<C-l>"] = function(prompt_bufnr)
                             local action_state = require("telescope.actions.state")
                             local actions = require("telescope.actions")
                             local entry = action_state.get_selected_entry()
